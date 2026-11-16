@@ -8,9 +8,23 @@
 //
 // Una escena sin `choices` es un final.
 
-export const START_SCENE = 'intro'
+export interface Choice {
+  label: string
+  next: SceneId
+}
 
-export const scenes = {
+export interface Scene {
+  src: string
+  title: string
+  prompt?: string
+  choices?: Choice[]
+}
+
+export type SceneId = 'intro' | 'opcionA' | 'opcionB'
+
+export const START_SCENE: SceneId = 'intro'
+
+export const scenes: Record<SceneId, Scene> = {
   intro: {
     src: '/videos/intro.mp4',
     title: 'Fragmento 1',

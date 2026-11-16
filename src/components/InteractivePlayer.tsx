@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react'
-import { scenes, START_SCENE } from '../story'
+import { scenes, START_SCENE, type SceneId } from '../story'
 import './InteractivePlayer.css'
 
 export default function InteractivePlayer() {
-  const [sceneId, setSceneId] = useState(START_SCENE)
+  const [sceneId, setSceneId] = useState<SceneId>(START_SCENE)
   const [ended, setEnded] = useState(false)
   const [missing, setMissing] = useState(false)
 
   const scene = scenes[sceneId]
-  const hasChoices = scene.choices?.length > 0
+  const choices = scene.choices ?? []
+  const hasChoices = choices.length > 0
 
   // Precargar los videos de las opciones para que el cambio sea inmediato.
   useEffect(() => {
@@ -25,7 +26,7 @@ export default function InteractivePlayer() {
 
   // Cambiar de escena: el <video> se vuelve a montar (key={sceneId})
   // y las escenas posteriores a la primera arrancan solas (autoPlay).
-  const goTo = (next) => {
+  const goTo = (next: SceneId) => {
     setEnded(false)
     setMissing(false)
     setSceneId(next)
@@ -61,7 +62,7 @@ export default function InteractivePlayer() {
         <div className="player__overlay">
           <p className="player__prompt">{scene.prompt}</p>
           <div className="player__choices">
-            {scene.choices.map((c) => (
+            {choices.map((c) => (
               <button
                 key={c.next}
                 className="player__choice"

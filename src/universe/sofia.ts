@@ -15,22 +15,83 @@
 //   19 oct     → Muere el Mateo real (no aparece en el perfil).
 //   después    → Sofía sigue publicando fotos felices con "Mateo" (Atlas).
 
-const ph = (description) => ({ src: null, description })
-const img = (file) => `/images/${encodeURIComponent(file)}`
-const pic = (file, description) => ({ src: img(file), description })
+/** Recorte cuadrado dentro de una imagen, en píxeles de la imagen original. */
+export interface Crop {
+  x: number
+  y: number
+  size: number
+  width: number
+  height: number
+}
+
+/** Sin `src` se muestra un recuadro con la descripción. */
+export interface Photo {
+  src: string | null
+  description?: string
+  crop?: Crop
+}
+
+export interface Comment {
+  author: string
+  text: string
+  time: string
+}
+
+export interface SharedLink {
+  source: string
+  title: string
+  description: string
+  photo: Photo
+}
+
+export interface Post {
+  date: string
+  text?: string
+  /** Personas etiquetadas ("está con …"). */
+  with?: string[]
+  /** Lugar ("en …"). */
+  at?: string
+  photo?: Photo
+  link?: SharedLink
+  reactions: number
+  hearts?: boolean
+  shares?: number
+  comments?: Comment[]
+}
+
+export interface Friend {
+  name: string
+  avatar: Photo
+}
+
+export interface Profile {
+  name: string
+  avatar: Photo
+  cover: Photo
+  friendsCount: number
+  bio?: string
+  details: { icon: string; text: string }[]
+  photos: Photo[]
+  friends: Friend[]
+  posts: Post[]
+}
+
+export const ph = (description: string): Photo => ({ src: null, description })
+const img = (file: string) => `/images/${encodeURIComponent(file)}`
+const pic = (file: string, description: string): Photo => ({ src: img(file), description })
 
 // Fotos de perfil: todas las imágenes miden 1376×768, así que se recorta un cuadrado.
 // x, y = esquina superior izquierda del recuadro; size = lado del cuadrado en píxeles.
-const avatar = (file, x, y, size) => ({
+const avatar = (file: string, x: number, y: number, size: number): Photo => ({
   src: img(file),
   crop: { x, y, size, width: 1376, height: 768 },
 })
 
 // Las amigas vienen en una sola lámina con 4 caras (2×2), cada una en un recuadro de 384 px.
 const FRIENDS_SHEET = 'Creating_profile_pictures_art_style_ace39172.jpg'
-const face = (x, y) => avatar(FRIENDS_SHEET, x, y, 384)
+const face = (x: number, y: number) => avatar(FRIENDS_SHEET, x, y, 384)
 
-export const sofia = {
+export const sofia: Profile = {
   name: 'Sofía',
   avatar: avatar('sofia.jpg', 395, 0, 600),
   cover: pic('portada.jpg', 'Sofía con sus amigas en una terraza al atardecer.'),

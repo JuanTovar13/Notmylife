@@ -1,14 +1,22 @@
 import { Fragment } from 'react'
 import { Link } from 'react-router'
-import { sofia } from '../../universe/sofia'
+import {
+  sofia,
+  type Crop,
+  type Photo as PhotoData,
+  type Post as PostData,
+  type Profile,
+} from '../../universe/sofia'
 import './FacebookProfile.css'
+
+type AvatarLookup = (name: string) => PhotoData | undefined
 
 // Foto: { src, description }. Sin `src` se muestra un recuadro con la descripción,
 // que sirve como guía de lo que debe mostrar la imagen definitiva.
 // Si la foto trae `crop` ({ x, y, size, width, height } en píxeles de la imagen
 // original), se muestra solo ese recuadro: sirve para usar una lámina con varias caras.
-function cropStyle(src, { x, y, size, width, height }) {
-  const pos = (offset, total) => (total === size ? 0 : (offset / (total - size)) * 100)
+function cropStyle(src: string, { x, y, size, width, height }: Crop) {
+  const pos = (offset: number, total: number) => (total === size ? 0 : (offset / (total - size)) * 100)
   return {
     backgroundImage: `url("${src}")`,
     backgroundSize: `${(width / size) * 100}% auto`,
@@ -16,7 +24,13 @@ function cropStyle(src, { x, y, size, width, height }) {
   }
 }
 
-function Photo({ photo, className = '', showDescription = true }) {
+interface PhotoProps {
+  photo?: PhotoData
+  className?: string
+  showDescription?: boolean
+}
+
+function Photo({ photo, className = '', showDescription = true }: PhotoProps) {
   if (photo?.src && photo.crop) {
     return (
       <div
@@ -39,7 +53,15 @@ function Photo({ photo, className = '', showDescription = true }) {
   )
 }
 
-function Avatar({ photo, name, className = '' }) {
+function Avatar({
+  photo,
+  name,
+  className = '',
+}: {
+  photo?: PhotoData
+  name: string
+  className?: string
+}) {
   if (photo?.src) {
     return (
       <Photo
@@ -57,7 +79,7 @@ function Avatar({ photo, name, className = '' }) {
 }
 
 // Convierte "[[Nombre]]" en una etiqueta resaltada, como las menciones de Facebook.
-function RichText({ text }) {
+function RichText({ text }: { text: string }) {
   const parts = text.split(/\[\[(.+?)\]\]/g)
   return parts.map((part, i) =>
     i % 2 === 1 ? (
@@ -70,9 +92,9 @@ function RichText({ text }) {
   )
 }
 
-const plural = (n, one, many) => `${n} ${n === 1 ? one : many}`
+const plural = (n: number, one: string, many: string) => `${n} ${n === 1 ? one : many}`
 
-function PostHeadline({ profile, post }) {
+function PostHeadline({ profile, post }: { profile: Profile; post: PostData }) {
   return (
     <p className="fb-post__author">
       {profile.name}
@@ -99,7 +121,15 @@ function PostHeadline({ profile, post }) {
   )
 }
 
-function Post({ post, profile, avatarOf }) {
+function Post({
+  post,
+  profile,
+  avatarOf,
+}: {
+  post: PostData
+  profile: Profile
+  avatarOf: AvatarLookup
+}) {
   const comments = post.comments ?? []
   return (
     <article className="fb-card fb-post">
@@ -175,7 +205,7 @@ function Post({ post, profile, avatarOf }) {
 
 export default function SofiaProfile() {
   const p = sofia
-  const avatarOf = (name) =>
+  const avatarOf: AvatarLookup = (name) =>
     name === p.name ? p.avatar : p.friends.find((f) => f.name === name)?.avatar
 
   return (

@@ -15,6 +15,12 @@ const entries = [
     title: 'Caso NX-2026-10-4471',
     text: 'Informe policial de una muerte en el Edificio Altamira. Víctima no identificada.',
   },
+  {
+    to: '/universo/noticias',
+    kicker: 'Archivo 03',
+    title: 'Noticias Nexo',
+    text: 'La cobertura de Vértice Labs, la empresa que creó a Atlas.',
+  },
 ]
 
 export default function UniverseHub() {

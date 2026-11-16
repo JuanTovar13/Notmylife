@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import { Link } from 'react-router'
 import './PoliceReport.css'
 
@@ -8,7 +9,7 @@ function R({ w = 6 }) {
   return <span className="pr-redact" style={{ width: `${w}ch` }} aria-label="dato tachado" />
 }
 
-function Field({ label, children }) {
+function Field({ label, children }: { label: string; children: ReactNode }) {
   return (
     <div className="pr-field">
       <dt>{label}</dt>
@@ -17,7 +18,14 @@ function Field({ label, children }) {
   )
 }
 
-const interviews = [
+interface Interview {
+  unit: string
+  name: ReactNode
+  text: string
+  highlight?: boolean
+}
+
+const interviews: Interview[] = [
   { unit: '1401', name: <>Hernán <R w={7} /></>, text: 'No reconoce a la víctima. Indica que dormía y no escuchó nada.' },
   { unit: '1403', name: <>Familia <R w={8} /></>, text: 'Cuatro moradores presentes. Ninguno reconoce a la víctima.' },
   {
