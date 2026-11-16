@@ -1,0 +1,257 @@
+/* Informe policial: documento impreso sobre fondo oscuro. */
+
+.pr {
+  --paper: #ecebe4;
+  --ink: #1d1f22;
+  --ink-soft: #4a4d52;
+  --rule: #b9b7ad;
+  --stamp: #a3262a;
+
+  min-height: 100svh;
+  padding-bottom: 4rem;
+}
+
+.pr-exit {
+  padding: 6px 16px;
+  font-size: 13px;
+}
+
+.pr-exit a {
+  color: #8a929c;
+  text-decoration: none;
+  letter-spacing: 0.08em;
+}
+
+.pr-exit a:hover {
+  color: #7fd3e6;
+}
+
+.pr-doc {
+  position: relative;
+  width: min(820px, calc(100% - 32px));
+  margin: 2rem auto 0;
+  padding: 3.5rem 4rem 3rem;
+  box-sizing: border-box;
+  background:
+    radial-gradient(ellipse at 20% 0%, rgba(255, 255, 255, 0.5), transparent 60%),
+    var(--paper);
+  color: var(--ink);
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 15px;
+  line-height: 1.6;
+  box-shadow:
+    0 30px 60px -20px rgba(0, 0, 0, 0.8),
+    0 0 0 1px rgba(0, 0, 0, 0.3);
+  transform: rotate(-0.3deg);
+}
+
+.pr-doc p {
+  margin: 0 0 0.75rem;
+}
+
+.pr-doc strong {
+  font-weight: 700;
+}
+
+/* Encabezado */
+.pr-head {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 170px 1rem 0;
+  border-bottom: 3px double var(--ink);
+}
+
+.pr-seal {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 56px;
+  height: 56px;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.pr-head p {
+  margin: 0;
+}
+
+.pr-org {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.pr-sub {
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.pr-title {
+  margin: 1.75rem 0 1.25rem;
+  font-size: 1.35rem;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink);
+}
+
+.pr-doc h2 {
+  margin: 2rem 0 0.75rem;
+  padding-bottom: 0.25rem;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-bottom: 1px solid var(--ink);
+  color: var(--ink);
+}
+
+.pr-doc h3 {
+  margin: 1.25rem 0 0.25rem;
+  font-size: 0.95rem;
+  text-decoration: underline;
+  color: var(--ink);
+}
+
+.pr-doc ul {
+  margin: 0 0 0.75rem;
+  padding-left: 1.25rem;
+}
+
+.pr-doc li {
+  margin-bottom: 0.25rem;
+}
+
+/* Campos clave: valor */
+.pr-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin: 0 0 1rem;
+  border: 1px solid var(--rule);
+}
+
+.pr-field {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--rule);
+  margin: -1px 0 0 -1px;
+}
+
+.pr-field dt {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+}
+
+.pr-field dd {
+  margin: 0;
+}
+
+/* Datos tachados */
+.pr-redact {
+  display: inline-block;
+  height: 1em;
+  vertical-align: -0.1em;
+  background: var(--ink);
+}
+
+/* Entrevistas */
+.pr-doc .pr-interviews {
+  list-style: none;
+  padding: 0;
+}
+
+.pr-interviews li {
+  padding: 0.6rem 0.75rem;
+  border-left: 3px solid var(--rule);
+  margin-bottom: 0.6rem;
+}
+
+.pr-interviews li.is-highlight {
+  border-left-color: var(--ink);
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.pr-interviews__who {
+  font-weight: 700;
+  margin-bottom: 0.15rem !important;
+}
+
+.pr-interviews li p:last-child {
+  margin: 0;
+}
+
+/* Sello */
+.pr-stamp {
+  position: absolute;
+  top: 2.2rem;
+  right: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.35rem 1rem;
+  border: 3px solid var(--stamp);
+  border-radius: 4px;
+  color: var(--stamp);
+  font-weight: 700;
+  font-size: 1.3rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  line-height: 1.1;
+  transform: rotate(-12deg);
+  opacity: 0.8;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.pr-stamp small {
+  font-size: 0.8rem;
+  letter-spacing: 0.3em;
+}
+
+/* Firmas */
+.pr-sign {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 3.5rem;
+  font-size: 13px;
+}
+
+.pr-sign__line {
+  display: block;
+  border-top: 1px solid var(--ink);
+  margin-bottom: 0.4rem;
+}
+
+.pr-footnote {
+  margin: 2.5rem 0 0 !important;
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+@media (max-width: 640px) {
+  .pr-doc {
+    padding: 2.5rem 1.25rem 2rem;
+    font-size: 14px;
+    transform: none;
+  }
+  .pr-stamp {
+    top: 0.75rem;
+    right: 0.75rem;
+    font-size: 0.95rem;
+  }
+  .pr-head {
+    margin-top: 2.5rem;
+    padding-right: 0;
+  }
+  .pr-grid,
+  .pr-sign {
+    grid-template-columns: 1fr;
+  }
+}

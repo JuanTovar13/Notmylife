@@ -1,0 +1,85 @@
+.hub {
+  width: min(1200px, 100%);
+  margin: 0 auto;
+  padding: 2rem 16px 3rem;
+  box-sizing: border-box;
+}
+
+.hub__back {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+}
+
+.hub__back:hover {
+  color: var(--accent);
+}
+
+.hub__header {
+  margin: 2.5rem 0 2rem;
+}
+
+.hub__kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.35em;
+  font-size: 0.75rem;
+  color: var(--accent);
+}
+
+.hub__header h1 {
+  margin: 0.5rem 0 0;
+  font-weight: 300;
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-h);
+}
+
+.hub__grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.hub__card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 1.5rem;
+  border: 1px solid var(--line);
+  background: rgba(10, 12, 15, 0.6);
+  text-decoration: none;
+  color: var(--text);
+  transition:
+    border-color 0.25s,
+    box-shadow 0.25s;
+}
+
+.hub__card:hover,
+.hub__card:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 28px -10px var(--accent);
+}
+
+.hub__card-kicker {
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.hub__card-title {
+  font-size: 1.25rem;
+  color: var(--text-h);
+}
+
+.hub__card-text {
+  font-size: 0.9rem;
+}

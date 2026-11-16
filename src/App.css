@@ -17,3 +17,43 @@
   text-transform: uppercase;
   color: var(--text-h);
 }
+
+.app__universe {
+  display: flex;
+  justify-content: center;
+  margin-top: 2.5rem;
+}
+
+.btn-universe {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  color: var(--text-h);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  font-size: 0.85rem;
+  border: 1px solid var(--line);
+  background: rgba(10, 12, 15, 0.6);
+  transition:
+    border-color 0.25s,
+    color 0.25s,
+    box-shadow 0.25s;
+}
+
+.btn-universe:hover,
+.btn-universe:focus-visible {
+  outline: none;
+  color: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 0 28px -8px var(--accent);
+}
+
+.btn-universe__arrow {
+  transition: transform 0.25s;
+}
+
+.btn-universe:hover .btn-universe__arrow {
+  transform: translateX(4px);
+}

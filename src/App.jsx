@@ -1,14 +1,17 @@
-import InteractivePlayer from './components/InteractivePlayer'
-import './App.css'
+import { Route, Routes } from 'react-router'
+import Landing from './pages/Landing'
+import UniverseHub from './pages/UniverseHub'
+import SofiaProfile from './pages/universe/SofiaProfile'
+import PoliceReport from './pages/universe/PoliceReport'
 
 function App() {
   return (
-    <main className="app">
-      <header className="app__header">
-        <h1>Not my life</h1>
-      </header>
-      <InteractivePlayer />
-    </main>
+    <Routes>
+      <Route path="/" element={<Landing />} />
+      <Route path="/universo" element={<UniverseHub />} />
+      <Route path="/universo/sofia" element={<SofiaProfile />} />
+      <Route path="/universo/informe" element={<PoliceReport />} />
+    </Routes>
   )
 }
 
