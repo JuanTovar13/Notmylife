@@ -1,0 +1,24 @@
+:root {
+  --bg: #07080a;
+  --text: #8a929c;
+  --text-h: #e6e9ee;
+  --line: #22262d;
+  --accent: #7fd3e6;
+
+  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.5;
+  color-scheme: dark;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  margin: 0;
+  min-height: 100svh;
+  background: radial-gradient(ellipse at top, #10141a 0%, var(--bg) 60%);
+}
+
+p {
+  margin: 0;
+}

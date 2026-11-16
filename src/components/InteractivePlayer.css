@@ -1,0 +1,126 @@
+.player {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.player__video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  transition: filter 0.8s ease;
+}
+
+.player__video.is-dimmed {
+  filter: brightness(0.35) blur(2px);
+}
+
+.player__overlay,
+.player__placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 1rem;
+  text-align: center;
+  animation: fade-in 0.8s ease both;
+}
+
+.player__placeholder {
+  background: repeating-linear-gradient(
+    135deg,
+    #0b0d10 0 12px,
+    #0e1115 12px 24px
+  );
+  gap: 0.75rem;
+}
+
+.player__placeholder-title {
+  font-size: clamp(1.25rem, 3vw, 2rem);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--text-h);
+}
+
+.player__placeholder-text {
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+.player__placeholder code {
+  color: var(--accent);
+}
+
+.player__prompt {
+  font-size: clamp(1.1rem, 3vw, 1.8rem);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-h);
+}
+
+.player__choices {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.player__choice,
+.player__ghost {
+  font: inherit;
+  cursor: pointer;
+  color: var(--text-h);
+  background: rgba(10, 12, 15, 0.6);
+  border: 1px solid var(--line);
+  padding: 0.85rem 1.6rem;
+  letter-spacing: 0.08em;
+  transition:
+    border-color 0.25s,
+    color 0.25s,
+    box-shadow 0.25s;
+}
+
+.player__choice {
+  min-width: min(260px, 80vw);
+}
+
+.player__choice:hover,
+.player__choice:focus-visible,
+.player__ghost:hover,
+.player__ghost:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: 0 0 24px -6px var(--accent);
+}
+
+.player__ghost {
+  font-size: 0.85rem;
+  padding: 0.6rem 1.2rem;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 600px) {
+  .player__choices {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .player__choice {
+    padding: 0.6rem 1rem;
+  }
+}

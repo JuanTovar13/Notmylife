@@ -1,0 +1,19 @@
+.app {
+  width: min(1200px, 100%);
+  margin: 0 auto;
+  padding: 2rem 16px 3rem;
+  box-sizing: border-box;
+}
+
+.app__header {
+  margin-bottom: 1.5rem;
+}
+
+.app__header h1 {
+  margin: 0;
+  font-weight: 300;
+  font-size: clamp(1.8rem, 5vw, 3rem);
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--text-h);
+}
